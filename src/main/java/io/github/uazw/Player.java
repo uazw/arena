@@ -2,8 +2,8 @@ package io.github.uazw;
 
 public class Player {
 
-    private final String name;
-    private int blood;
+    protected final String name;
+    protected int blood;
     private final int damage;
 
     public Player(String name, int blood, int damage) {
@@ -17,13 +17,23 @@ public class Player {
     }
 
     public String attack(Player anotherPlayer) {
-        return String.format("%s attack %s, ", name, anotherPlayer.getName()) + anotherPlayer.beAttacked(this);
+        return String.format("%s %s attack %s %s, ", getRole(), name,
+                anotherPlayer.getRole(), anotherPlayer.getName()) +
+                anotherPlayer.beAttacked(this);
+    }
+
+    public String getRole() {
+        return "normal people";
     }
 
     public String beAttacked(Player player) {
-        blood -= player.getDamage();
+        blood -= actualDamage(player.getDamage());
         return String.format("%s get damage at %d, the rest blood of %s is %d",
-                name, player.getDamage(), name, getBlood());
+                name, actualDamage(player.getDamage()), name, getBlood());
+    }
+
+    protected int actualDamage(int damage) {
+        return damage;
     }
 
     public int getBlood() {

@@ -2,9 +2,7 @@ package io.github.uazw;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InOrder;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.PrintStream;
 
@@ -40,10 +38,14 @@ public class GameTest {
 
         game.fight(first, second);
 
-        inOrder.verify(output, times(1)).println("zhansan attack lisi, lisi get damage at 8, the rest blood of lisi is 12");
-        inOrder.verify(output, times(1)).println("lisi attack zhansan, zhansan get damage at 9, the rest blood of zhansan is 1");
-        inOrder.verify(output, times(1)).println("zhansan attack lisi, lisi get damage at 8, the rest blood of lisi is 4");
-        inOrder.verify(output, times(1)).println("lisi attack zhansan, zhansan get damage at 9, the rest blood of zhansan is -8");
+        inOrder.verify(output, times(1)).println("normal people zhansan attack normal people lisi," +
+                " lisi get damage at 8, the rest blood of lisi is 12");
+        inOrder.verify(output, times(1)).println("normal people lisi attack normal people zhansan," +
+                " zhansan get damage at 9, the rest blood of zhansan is 1");
+        inOrder.verify(output, times(1)).println("normal people zhansan attack normal people lisi," +
+                " lisi get damage at 8, the rest blood of lisi is 4");
+        inOrder.verify(output, times(1)).println("normal people lisi attack normal people zhansan," +
+                " zhansan get damage at 9, the rest blood of zhansan is -8");
         inOrder.verify(output, times(1)).println("zhansan is beated");
     }
 }

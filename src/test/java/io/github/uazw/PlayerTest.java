@@ -54,6 +54,32 @@ public class PlayerTest {
 
         String info = player.attack(anotherPlayer);
 
-        assertEquals("zhansan attack lisi, lisi get damage at 10, the rest blood of lisi is 90", info);
+        assertEquals("normal people zhansan attack normal people lisi," +
+                " lisi get damage at 10, the rest blood of lisi is 90", info);
+    }
+
+    @Test
+    public void should_return_person_attack_soldier_info() {
+        Player player = new Player("zhansan", 100, 10);
+        Soldier soldier = new Soldier("lisi", 100, 10);
+
+        String info = player.attack(soldier);
+
+        assertEquals("normal people zhansan attack soldier lisi," +
+                " lisi get damage at 10, the rest blood of lisi is 90", info);
+
+    }
+
+    @Test
+    public void should_return_person_attack_soldier_who_wear_armor_will_weaken_damage() {
+        Player player = new Player("zhansan", 100, 10);
+        Soldier soldier = new Soldier("lisi", 100, 10);
+        Armor armor = new Armor("e...", 5);
+        soldier.wearArmor(armor);
+
+        String info = player.attack(soldier);
+
+        assertEquals("normal people zhansan attack soldier lisi," +
+                " lisi get damage at 5, the rest blood of lisi is 95", info);
     }
 }
