@@ -19,20 +19,20 @@ public class Player {
     public String attack(Player anotherPlayer) {
         return String.format("%s %s attack %s %s, ", getRole(), name,
                 anotherPlayer.getRole(), anotherPlayer.getName()) +
-                anotherPlayer.beAttacked(this);
+                anotherPlayer.beAttacked(damage);
     }
 
     public String getRole() {
         return "normal people";
     }
 
-    public String beAttacked(Player player) {
-        blood -= actualDamage(player.getDamage());
+    protected String beAttacked(int damage) {
+        blood -= actualSufferedDamage(damage);
         return String.format("%s get damage at %d, the rest blood of %s is %d",
-                name, actualDamage(player.getDamage()), name, getBlood());
+                name, actualSufferedDamage(damage), name, getBlood());
     }
 
-    protected int actualDamage(int damage) {
+    protected int actualSufferedDamage(int damage) {
         return damage;
     }
 

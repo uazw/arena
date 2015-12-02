@@ -71,7 +71,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void should_return_person_attack_soldier_who_wear_armor_will_weaken_damage() {
+    public void should_soldier_suffer_weaken_damage_when_person_attack_soldier_who_wear_armor() {
         Player player = new Player("zhansan", 100, 10);
         Soldier soldier = new Soldier("lisi", 100, 10);
         Armor armor = new Armor("e...", 5);
@@ -81,5 +81,19 @@ public class PlayerTest {
 
         assertEquals("normal people zhansan attack soldier lisi," +
                 " lisi get damage at 5, the rest blood of lisi is 95", info);
+    }
+
+    @Test
+    public void should_soldier_suffer_zero_damage_when_the_attack_less_than_soldier_defend() {
+        Player player = new Player("zhansan", 100, 10);
+        Soldier soldier = new Soldier("lisi", 100, 10);
+        Armor armor = new Armor("e...", 11);
+        soldier.wearArmor(armor);
+
+        String info = player.attack(soldier);
+
+        assertEquals("normal people zhansan attack soldier lisi," +
+                " lisi get damage at 0, the rest blood of lisi is 100", info);
+
     }
 }
