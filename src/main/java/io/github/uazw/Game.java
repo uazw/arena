@@ -1,23 +1,22 @@
 package io.github.uazw;
 
+import java.io.PrintStream;
+
 public class Game {
 
-    private final Player second;
-    private final Player first;
+    private final PrintStream output;
 
-    public Game(Player first, Player second) {
-        this.first = first;
-        this.second = second;
+    public Game(PrintStream output) {
+        this.output = output;
     }
 
-    public String fight() {
+    public void fight(Player first, Player second) {
         while (second.isAlive() && first.isAlive()) {
-            first.attack(second);
+            output.println(first.attack(second));
             if (!second.isAlive()) break;
-            second.attack(first);
-            if (!first.isAlive()) break;
+            output.println(second.attack(first));
         }
 
-        return String.format("%s is beated", first.isAlive()? second.getName(): first.getName());
+        output.println(String.format("%s is beated", first.isAlive()? second.getName(): first.getName()));
     }
 }

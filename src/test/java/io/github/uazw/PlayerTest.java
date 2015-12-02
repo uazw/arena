@@ -3,6 +3,7 @@ package io.github.uazw;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class PlayerTest {
@@ -44,5 +45,15 @@ public class PlayerTest {
         int restBlood = anotherPlayer.getBlood();
 
         assertThat(restBlood, is(100 - player.getDamage()));
+    }
+
+    @Test
+    public void should_return_attack_info_when_one_attack_another() {
+        Player player = new Player("zhansan", 100, 10);
+        Player anotherPlayer = new Player("lisi", 100, 10);
+
+        String info = player.attack(anotherPlayer);
+
+        assertEquals("zhansan attack lisi, lisi get damage at 10, the rest blood of lisi is 90", info);
     }
 }

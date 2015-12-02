@@ -16,12 +16,14 @@ public class Player {
         return blood > 0;
     }
 
-    public void attack(Player anotherPlayer) {
-        anotherPlayer.beAttacked(this);
+    public String attack(Player anotherPlayer) {
+        return String.format("%s attack %s, ", name, anotherPlayer.getName()) + anotherPlayer.beAttacked(this);
     }
 
-    public void beAttacked(Player player) {
+    public String beAttacked(Player player) {
         blood -= player.getDamage();
+        return String.format("%s get damage at %d, the rest blood of %s is %d",
+                name, player.getDamage(), name, getBlood());
     }
 
     public int getBlood() {
@@ -35,4 +37,6 @@ public class Player {
     public String getName() {
         return name;
     }
+
+
 }
