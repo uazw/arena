@@ -4,6 +4,8 @@ public class Weapon {
 
     private final int damage;
     private final String name;
+    private int percent;
+    private WeaponEffect weaponEffect;
 
     public Weapon(String name, int damage) {
         this.name = name;
@@ -21,4 +23,10 @@ public class Weapon {
     public int getDamage() {
         return damage;
     }
+
+    public void setWeaponEffect(WeaponEffect weaponEffect, int percent) {
+        this.weaponEffect = weaponEffect;
+        this.percent = percent;
+    }
+
 }

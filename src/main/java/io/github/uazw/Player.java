@@ -3,8 +3,10 @@ package io.github.uazw;
 public class Player {
 
     protected final String name;
-    protected int blood;
     private final int damage;
+    protected int blood;
+    private DeBuff deBuff;
+    private int restDeBuffCount = 0;
 
     public Player(String name, int blood, int damage) {
         this.name = name;
@@ -16,8 +18,17 @@ public class Player {
         return blood > 0;
     }
 
+    private String preAttack() {
+        String preAttackInfo = "";
+        if (restDeBuffCount > 0) {
+             preAttackInfo = deBuff.trigger(this);
+            restDeBuffCount -= 1;
+        }
+        return preAttackInfo;
+    }
+
     public String attack(Player anotherPlayer) {
-        return String.format("%s %s attack %s %s, ", getRole(), name,
+        return preAttack() + String.format("%s %s attack %s %s, ", getRole(), name,
                 anotherPlayer.getRole(), anotherPlayer.getName()) +
                 anotherPlayer.beAttacked(damage);
     }
@@ -49,4 +60,8 @@ public class Player {
     }
 
 
+    public void sufferDeBuff(DeBuff debuff, int count) {
+        this.deBuff = debuff;
+        this.restDeBuffCount += count;
+    }
 }

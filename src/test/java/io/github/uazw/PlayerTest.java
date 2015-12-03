@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class PlayerTest {
 
@@ -96,4 +97,5 @@ public class PlayerTest {
                 " lisi get damage at 0, the rest blood of lisi is 100", info);
 
     }
+
 }
