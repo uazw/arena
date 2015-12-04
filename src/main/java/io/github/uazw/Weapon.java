@@ -10,6 +10,7 @@ public class Weapon {
 
     private final int damage;
     private final String name;
+    private final WeaponType weaponType;
     private int percent = 100;
     private WeaponEffect weaponEffect = WeaponEffect.NONE;
     private Random random;
@@ -17,6 +18,13 @@ public class Weapon {
     public Weapon(String name, int damage) {
         this.name = name;
         this.damage = damage;
+        this.weaponType = WeaponType.MEDIUM;
+    }
+
+    public Weapon(String name, int damage, WeaponType weaponType) {
+        this.name = name;
+        this.damage = damage;
+        this.weaponType = weaponType;
     }
 
     public static Weapon noWeapon() {
@@ -87,5 +95,9 @@ public class Weapon {
         } else {
             return false;
         }
+    }
+
+    public WeaponType getWeaponType() {
+        return weaponType;
     }
 }

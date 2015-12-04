@@ -52,7 +52,7 @@ public class GameTest {
 
     @Test
     public void should_soldier_killed_player_when_use_full_force_weapon() {
-        Soldier soldier = new Soldier("zhansan", 100, 4);
+        PlayerWIthWeaponAndArmor soldier = new PlayerWIthWeaponAndArmor("zhansan", 100, 4);
         Player player = new Player("lisi", 20, 9);
         Weapon weapon = new Weapon("the killed sword", 4);
         weapon.setWeaponEffect(WeaponEffect.FULL_FORCE, 100, new Random());
