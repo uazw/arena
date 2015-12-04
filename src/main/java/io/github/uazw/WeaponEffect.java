@@ -1,5 +1,10 @@
 package io.github.uazw;
 
 public enum WeaponEffect {
-    weaponEffect, FULL_FORCE
+    NONE,
+    FIRE,
+    FROZEN,
+    POISON,
+    FULL_FORCE,
+    PUZZLE
 }

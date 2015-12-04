@@ -2,13 +2,13 @@ package io.github.uazw.debuff;
 
 import io.github.uazw.Player;
 
-public abstract class CannotAttackDeBuff implements DeBuff {
+public abstract class CannotAttackBuff implements Buff {
 
     private final int step;
     private final int activeRound;
     private int passRound;
 
-    public CannotAttackDeBuff(int step, int activeRounds) {
+    public CannotAttackBuff(int step, int activeRounds) {
         this.step = step;
         this.activeRound = activeRounds;
     }

@@ -2,7 +2,7 @@ package io.github.uazw.debuff;
 
 import io.github.uazw.Player;
 
-public interface DeBuff {
+public interface Buff {
 
     String trigger(Player player);
 

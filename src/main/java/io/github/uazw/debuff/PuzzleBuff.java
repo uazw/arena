@@ -2,9 +2,9 @@ package io.github.uazw.debuff;
 
 import io.github.uazw.Player;
 
-public class PuzzleDeBuff extends CannotAttackDeBuff {
+public class PuzzleBuff extends CannotAttackBuff {
 
-    public PuzzleDeBuff() {
+    public PuzzleBuff() {
         super(1, 2);
     }
 
@@ -14,5 +14,8 @@ public class PuzzleDeBuff extends CannotAttackDeBuff {
      return String.format("%s is puzzled, can't attack, left %d", player.getName(), player.restRoundOf(this) - 1);
     }
 
-
+    @Override
+    public String name() {
+        return "puzzle deBuff";
+    }
 }

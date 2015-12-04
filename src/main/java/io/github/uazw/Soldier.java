@@ -26,9 +26,12 @@ public class Soldier extends Player {
 
     @Override
     public String attack(Player anotherPlayer) {
-        return String.format("%s %s attack %s %s using %s, ", getRole(), name,
-                anotherPlayer.getRole(), anotherPlayer.getName(), weapon.getName()) +
-                anotherPlayer.beAttacked(getDamage() + weapon.getDamage());
+        SpecialDamage damage = weapon.beUsed(getDamage());
+        String info = String.format("%s %s attack %s %s using %s, ", getRole(), name,
+                anotherPlayer.getRole(), anotherPlayer.getName(), weapon.getName());
+        info += String.format(damage.getInfo(), name);
+        info += anotherPlayer.beAttacked(damage);
+        return info;
     }
 
     public void equipWeapon(Weapon weapon) {

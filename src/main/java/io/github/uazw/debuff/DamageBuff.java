@@ -3,12 +3,12 @@ package io.github.uazw.debuff;
 import io.github.uazw.Element;
 import io.github.uazw.Player;
 
-public class DamageDeBuff implements DeBuff {
+public class DamageBuff implements Buff {
     protected final int damage;
     private final Element element;
     private final int activeRound;
 
-    public DamageDeBuff(int damage, Element element, int activeRound) {
+    public DamageBuff(int damage, Element element, int activeRound) {
         this.damage = damage;
         this.element = element;
         this.activeRound = activeRound;
@@ -38,7 +38,7 @@ public class DamageDeBuff implements DeBuff {
 
     @Override
     public String name() {
-        return element.toString() + "deBuff";
+        return element.toString() + " deBuff";
     }
 
 }

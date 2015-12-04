@@ -1,6 +1,6 @@
 package io.github.uazw;
 
-import io.github.uazw.debuff.DeBuff;
+import io.github.uazw.debuff.Buff;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class Player {
         return buffStatus.triggerAll(this);
     }
 
-    public void cleanBuff(DeBuff buff) {
+    public void cleanBuff(Buff buff) {
         buff.disActive(this);
         buffStatus.remove(buff);
     }
@@ -58,6 +58,12 @@ public class Player {
                 name, actualSufferedDamage(damage), name, getBlood());
     }
 
+    protected String beAttacked(SpecialDamage damage) {
+        blood -= actualSufferedDamage(damage.value());
+        return String.format("%s get damage at %d,%s the rest blood of %s is %d",
+                name, actualSufferedDamage(damage.value()), sufferDeBuff(damage.deBuff()), name, getBlood());
+
+    }
 
     public void realDamage(int damage) {
         blood -= damage;
@@ -80,9 +86,13 @@ public class Player {
     }
 
 
-    public void sufferDeBuff(DeBuff debuff) {
-        debuff.active(this);
-        buffStatus.add(debuff);
+    public String sufferDeBuff(Buff deBuff) {
+        if (deBuff != null) {
+            deBuff.active(this);
+            buffStatus.add(deBuff);
+            return String.format(" %s suffer %s,", name, deBuff.name());
+        }
+        return "";
     }
 
     public void notAllowAttack() {
@@ -93,18 +103,18 @@ public class Player {
         this.stopAttack = false;
     }
 
-    public int restRoundOf(DeBuff deBuff) {
-        return buffStatus.restRoundOf(deBuff);
+    public int restRoundOf(Buff buff) {
+        return buffStatus.restRoundOf(buff);
     }
 
     class BuffStatus {
 
         private Map<String, Integer> deBuffs = new HashMap<>();
-        private Map<String, DeBuff> deBuffMap = new HashMap<>();
+        private Map<String, Buff> deBuffMap = new HashMap<>();
 
-        void add(DeBuff deBuff) {
-            deBuffs.merge(deBuff.name(), deBuff.activeRound(), (x, y) -> x + y);
-            deBuffMap.putIfAbsent(deBuff.name(), deBuff);
+        void add(Buff buff) {
+            deBuffs.merge(buff.name(), buff.activeRound(), (x, y) -> x + y);
+            deBuffMap.putIfAbsent(buff.name(), buff);
         }
 
         String triggerAll(Player player) {
@@ -133,13 +143,13 @@ public class Player {
 
         }
 
-        void remove(DeBuff deBuff) {
-            deBuffs.remove(deBuff);
-            deBuffMap.remove(deBuff);
+        void remove(Buff buff) {
+            deBuffs.remove(buff);
+            deBuffMap.remove(buff);
         }
 
-        int restRoundOf(DeBuff deBuff) {
-            return deBuffs.get(deBuff.name());
+        int restRoundOf(Buff buff) {
+            return deBuffs.get(buff.name());
         }
     }
 }

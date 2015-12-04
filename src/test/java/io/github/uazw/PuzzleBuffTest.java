@@ -1,20 +1,20 @@
 package io.github.uazw;
 
-import io.github.uazw.debuff.PuzzleDeBuff;
+import io.github.uazw.debuff.PuzzleBuff;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.*;
 
-public class PuzzleDeBuffTest {
+public class PuzzleBuffTest {
 
     @Test
     public void should_people_cannot_attack_when_suffer_Puzzle() {
         Player player = new Player("zhansan", 100, 10);
         Player anotherPlayer = new Player("lisi", 100, 10);
         anotherPlayer = spy(anotherPlayer);
-        player.sufferDeBuff(new PuzzleDeBuff());
+        player.sufferDeBuff(new PuzzleBuff());
 
         player.attack(anotherPlayer);
         player.attack(anotherPlayer);
@@ -28,10 +28,11 @@ public class PuzzleDeBuffTest {
         Player player = new Player("zhansan", 100, 10);
         Player anotherPlayer = new Player("lisi", 100, 10);
         anotherPlayer = spy(anotherPlayer);
-        player.sufferDeBuff(new PuzzleDeBuff());
+        player.sufferDeBuff(new PuzzleBuff());
+        player.sufferDeBuff(new PuzzleBuff());
 
         String info = player.attack(anotherPlayer);
 
-        assertEquals("zhansan is puzzled, can't attack, left 1\n", info);
+        assertEquals("zhansan is puzzled, can't attack, left 3\n", info);
     }
 }

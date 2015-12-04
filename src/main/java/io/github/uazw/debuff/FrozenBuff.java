@@ -1,12 +1,11 @@
 package io.github.uazw.debuff;
 
 import io.github.uazw.Player;
-import io.github.uazw.debuff.CannotAttackDeBuff;
 
-public class FrozenDeBuff extends CannotAttackDeBuff {
+public class FrozenBuff extends CannotAttackBuff {
 
 
-    public FrozenDeBuff(int activeRound) {
+    public FrozenBuff(int activeRound) {
         super(3, activeRound);
     }
 
@@ -15,4 +14,8 @@ public class FrozenDeBuff extends CannotAttackDeBuff {
         return String.format("%s is frozen, cannot attack", player.getName());
     }
 
+    @Override
+    public String name() {
+        return "frozen deBuff";
+    }
 }

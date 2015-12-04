@@ -13,6 +13,23 @@ public enum Element {
         public String toString() {
             return "fire damage";
         }
+    },
+    FROZEN {
+        @Override
+        public String toString() {
+            return "frozen";
+        }
+    },
+    POISON {
+        @Override
+        public String toString() {
+            return "poison";
+        }
+    },
+    PUZZLE {
+        @Override
+        public String toString() {
+            return "puzzle";
+        }
     }
-
 }
